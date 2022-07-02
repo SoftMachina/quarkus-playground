@@ -1,9 +1,11 @@
 quarkus:
     http:
-        port: 8081
+        port: 8001
     datasource:
+        username: ${QUARKUS_DATASOURCE_USERNAME}
+        passwort: ${QUARKUS_DATASOURCE_PASSWORD}
         db-kind: postgresql
-        jdbc:
+        reactive:
             url: jdbc:postgresql://localhost:5432/recipe
 
 hibernate-orm:
