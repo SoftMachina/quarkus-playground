@@ -6,7 +6,7 @@ quarkus:
         passwort: ${QUARKUS_DATASOURCE_PASSWORD}
         db-kind: postgresql
         reactive:
-            url: jdbc:postgresql://localhost:5432/recipe-datenbank
+            url: vertx:jdbc:postgresql://localhost:5432/recipe-datenbank
 
 hibernate-orm:
     database:
