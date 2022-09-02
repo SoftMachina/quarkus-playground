@@ -2,11 +2,9 @@ quarkus:
     http:
         port: 8001
     datasource:
-        username: ${QUARKUS_DATASOURCE_USERNAME}
-        passwort: ${QUARKUS_DATASOURCE_PASSWORD}
         db-kind: postgresql
         reactive:
-            url: vertx:jdbc:postgresql://localhost:5432/recipe-datenbank
+            url: vertx-reactive:postgresql://localhost:5432/todoKai?user=${QUARKUS_DATASOURCE_USERNAME}&password=${QUARKUS_DATASOURCE_PASSWORD}
 
 hibernate-orm:
     database:
