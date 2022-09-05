@@ -16,7 +16,7 @@ class TodoItemAPI( val s: TodoItemService) {
     fun create(dto: TodoItemDto) = s.create(dto)
 
     @DELETE
-    fun delete(dto: TodoItemDto) = s.delete(dto)
+    fun delete(id: UUID) = s.delete(id)
 
 /*    @PUT
     fun update(dto: TodoItemDto, id: UUID) = s.update(dto,id)
