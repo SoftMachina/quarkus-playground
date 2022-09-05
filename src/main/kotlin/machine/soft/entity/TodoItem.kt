@@ -11,4 +11,11 @@ class TodoItem(
     constructor(dto: TodoItemDto) : this(name = dto.name, description = dto.description) {
     }
 
+    fun update(name: String, description: String): TodoItem {
+        this.name = name
+        this.description = description
+
+        return this
+    }
+
 }

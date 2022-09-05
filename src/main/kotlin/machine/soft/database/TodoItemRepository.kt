@@ -8,7 +8,11 @@ import java.util.UUID
 import javax.enterprise.context.Dependent
 
 @Dependent
-class TodoItemRepository: PanacheRepositoryBase<UUID, TodoItem> {
+class TodoItemRepository: PanacheRepositoryBase<TodoItem, UUID> {
 
-    fun create(todoItemDto: TodoItemDto): Uni<TodoItem> = TodoItem(todoItemDto).persistAndFlush()
+    fun create(dto: TodoItemDto): Uni<TodoItem> = TodoItem(dto).persistAndFlush()
+
+    fun update(id: UUID, dto: TodoItemDto): Uni<TodoItem> = findById(id).onItem().transform {
+        it.apply { persistAndFlush(update(dto.name,dto.description)) }
+    }
 }
