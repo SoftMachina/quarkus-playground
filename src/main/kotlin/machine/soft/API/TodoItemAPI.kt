@@ -3,11 +3,7 @@ package machine.soft.API
 import machine.soft.dto.TodoItemDto
 import machine.soft.service.TodoItemService
 import java.util.UUID
-import javax.ws.rs.DELETE
-import javax.ws.rs.GET
-import javax.ws.rs.POST
-import javax.ws.rs.PUT
-import javax.ws.rs.Path
+import javax.ws.rs.*
 
 @Path("/todo")
 class TodoItemAPI( val s: TodoItemService) {
@@ -16,7 +12,8 @@ class TodoItemAPI( val s: TodoItemService) {
     fun create(dto: TodoItemDto) = s.create(dto)
 
     @DELETE
-    fun delete(id: UUID) = s.delete(id)
+    @Path("/{id}")
+    fun delete(@PathParam("id") id: UUID ) = s.delete(id)
 
 /*    @PUT
     fun update(dto: TodoItemDto, id: UUID) = s.update(dto,id)
