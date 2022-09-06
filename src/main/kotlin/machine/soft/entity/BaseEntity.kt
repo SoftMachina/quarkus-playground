@@ -12,7 +12,7 @@ import javax.persistence.Version
 abstract class BaseEntity : PanacheEntityBase() {
     @Id
     @GeneratedValue(generator = "UUID")
-    val id: UUID? = null
+    var id: UUID? = null
     @Version
     var version: Int = 0
 
