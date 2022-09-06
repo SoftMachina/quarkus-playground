@@ -15,4 +15,6 @@ class TodoItemService(val r: TodoItemRepository){
     @ReactiveTransactional
     fun delete(id: UUID): Uni<Boolean> = r.deleteById(id).onItem().ifNotNull().transform { it }
 
+    fun getById(id: UUID): Uni<TodoItemDto> = r.findById(id).onItem().ifNotNull().transform(::TodoItemDto)
+
 }

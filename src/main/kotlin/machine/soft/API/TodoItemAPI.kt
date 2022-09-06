@@ -1,9 +1,12 @@
 package machine.soft.API
 
+import io.smallrye.mutiny.Uni
 import machine.soft.dto.TodoItemDto
 import machine.soft.service.TodoItemService
+import org.jboss.resteasy.reactive.RestResponse
 import java.util.UUID
 import javax.ws.rs.*
+import javax.ws.rs.core.Response.ok
 
 @Path("/todo")
 class TodoItemAPI( val s: TodoItemService) {
@@ -13,12 +16,10 @@ class TodoItemAPI( val s: TodoItemService) {
 
     @DELETE
     @Path("/{id}")
-    fun delete(@PathParam("id") id: UUID ) = s.delete(id)
-
-/*    @PUT
-    fun update(dto: TodoItemDto, id: UUID) = s.update(dto,id)
+    fun delete(@PathParam("id") id: UUID ) = s.delete(id).onItem().ifNotNull().transform(::ok)
 
     @GET
-    fun get(id: UUID) = s.get(id)
-*/
+    @Path("/{id}")
+    fun get(@PathParam("id") id: UUID): Uni<TodoItemDto> = s.getById(id)
+
 }
