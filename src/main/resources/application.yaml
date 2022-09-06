@@ -4,8 +4,8 @@ quarkus:
     datasource:
         db-kind: postgresql
         reactive:
-            url: vertx-reactive:postgresql://localhost:5432/todoKai?user=${QUARKUS_DATASOURCE_USERNAME}&password=${QUARKUS_DATASOURCE_PASSWORD}
+            url: vertx-reactive:postgresql://localhost:5432/postgres?user=postgres&password=mysecretpassword
 
-hibernate-orm:
-    database:
-        generation: drop-and-create #update
+    hibernate-orm:
+        database:
+            generation: update
