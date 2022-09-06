@@ -17,4 +17,5 @@ class TodoItemService(val r: TodoItemRepository){
 
     fun getById(id: UUID): Uni<TodoItemDto> = r.findById(id).onItem().ifNotNull().transform(::TodoItemDto)
 
+    fun update(id: UUID,dto: TodoItemDto) = r.update(id, TodoItem(dto))
 }

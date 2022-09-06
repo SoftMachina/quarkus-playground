@@ -1,6 +1,7 @@
 package machine.soft.database
 
 import io.quarkus.hibernate.reactive.panache.PanacheRepositoryBase
+import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional
 import io.smallrye.mutiny.Uni
 import machine.soft.dto.TodoItemDto
 import machine.soft.entity.TodoItem
@@ -11,5 +12,10 @@ import javax.enterprise.context.Dependent
 class TodoItemRepository: PanacheRepositoryBase<TodoItem, UUID> {
 
     fun create(dto: TodoItemDto): Uni<TodoItem> = TodoItem(dto).persistAndFlush()
+
+    @ReactiveTransactional
+    fun update(id: UUID, entity: TodoItem): Uni<TodoItemDto> = findById(id).onItem().ifNotNull().transformToUni {
+        it -> it.apply { update(entity) }.persist()
+    }
 
 }

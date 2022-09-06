@@ -11,9 +11,9 @@ class TodoItem(
     constructor(dto: TodoItemDto) : this(name = dto.name, description = dto.description) {
     }
 
-    fun update(name: String, description: String): TodoItem {
-        this.name = name
-        this.description = description
+    fun update(entity: TodoItem): TodoItem {
+        this.name = entity.name
+        this.description = entity.description
 
         return this
     }
