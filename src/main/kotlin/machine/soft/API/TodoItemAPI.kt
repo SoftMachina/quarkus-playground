@@ -27,6 +27,6 @@ class TodoItemAPI( val s: TodoItemService) {
 
     @PUT
     @Path("/{id}/switch")
-    fun switchState(@PathParam("id") id: UUID, dto: TodoItemDto): Uni<TodoItemDto> = s.switchState(id)
+    fun switchState(@PathParam("id") id: UUID): Uni<TodoItemDto> = s.switchState(id)
 
 }

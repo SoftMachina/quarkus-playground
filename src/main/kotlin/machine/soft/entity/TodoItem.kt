@@ -14,7 +14,7 @@ class TodoItem(
 ) : BaseEntity() {
 
 
-    constructor(dto: TodoItemDto, category: TodoCategory) : this(name = dto.name, description = dto.description, category = category, isDone = false)
+    constructor(dto: TodoItemDto, category: TodoCategory) : this(name = dto.name, description = dto.description, category = category)
 
     fun update(entity: TodoItem): TodoItem {
         this.name = entity.name
