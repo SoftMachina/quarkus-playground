@@ -25,6 +25,6 @@ class TodoItemAPI( val s: TodoItemService) {
 
     @PUT
     @Path("/{id}")
-    fun get(@PathParam("id") id: UUID, dto: TodoItemDto): Uni<TodoItemDto> = s.update(id, dto)
+    fun update(@PathParam("id") id: UUID, dto: TodoItemDto): Uni<TodoItemDto> = s.update(id, dto)
 
 }
