@@ -10,7 +10,7 @@ import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
 class TodoItemService(val r: TodoItemRepository) {
-    fun create(dto: TodoItemDto): Uni<TodoItemDto> = r.create(dto).onItem().ifNotNull().transform(::TodoItemDto)
+    fun create(dto: TodoItemDto): Uni<TodoItemDto> = r.create(dto)
 
     @ReactiveTransactional
     fun delete(id: UUID): Uni<Boolean> = r.deleteById(id).onItem().ifNotNull().transform { it }
