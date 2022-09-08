@@ -12,7 +12,8 @@ import javax.inject.Inject
 @Dependent
 class TodoItemRepository @Inject constructor(val repoTC: TodoCategoryRepository) : PanacheRepositoryBase<TodoItem, UUID> {
 
-    fun create(dto: TodoItemDto): Uni<TodoItemDto> = repoTC.findById(dto.category.id).onItem().ifNotNull().transformToUni { it ->
+    @ReactiveTransactional
+    fun create(dto: TodoItemDto): Uni<TodoItemDto> = repoTC.findById(dto.categoryId).onItem().ifNotNull().transformToUni { it ->
         persist(TodoItem(dto, it))
     }.onItem().ifNotNull().transform(::TodoItemDto)
 

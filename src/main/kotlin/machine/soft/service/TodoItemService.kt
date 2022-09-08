@@ -4,7 +4,6 @@ import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactiona
 import io.smallrye.mutiny.Uni
 import machine.soft.database.TodoItemRepository
 import machine.soft.dto.TodoItemDto
-import machine.soft.entity.TodoCategory
 import machine.soft.entity.TodoItem
 import java.util.*
 import javax.enterprise.context.ApplicationScoped
@@ -18,5 +17,5 @@ class TodoItemService(val r: TodoItemRepository) {
 
     fun getById(id: UUID): Uni<TodoItemDto> = r.findById(id).onItem().ifNotNull().transform(::TodoItemDto)
 
-    fun update(id: UUID, dto: TodoItemDto) = r.update(id, TodoItem(dto, TodoCategory(dto.category))).onItem().ifNotNull().transform(::TodoItemDto)
+    fun update(id: UUID, dto: TodoItemDto) = r.update(id, TodoItem(dto)).onItem().ifNotNull().transform(::TodoItemDto)
 }
