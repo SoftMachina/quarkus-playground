@@ -2,20 +2,20 @@ package machine.soft.service
 
 import io.quarkus.hibernate.reactive.panache.common.runtime.ReactiveTransactional
 import io.smallrye.mutiny.Uni
-import machine.soft.database.TodoCategoryRepository
-import machine.soft.dto.TodoCategoryDto
-import machine.soft.entity.TodoCategory
+import machine.soft.database.TodoItemRepository
+import machine.soft.dto.TodoItemDto
+import machine.soft.entity.TodoItem
 import java.util.*
 import javax.enterprise.context.ApplicationScoped
 
 @ApplicationScoped
-class TodoItemService(val r: TodoCategoryRepository) {
-    fun create(dto: TodoCategoryDto): Uni<TodoCategoryDto> = r.create(dto).onItem().ifNotNull().transform(::TodoCategoryDto)
+class TodoItemService(val r: TodoItemRepository) {
+    fun create(dto: TodoItemDto): Uni<TodoItemDto> = r.create(dto).onItem().ifNotNull().transform(::TodoItemDto)
 
     @ReactiveTransactional
     fun delete(id: UUID): Uni<Boolean> = r.deleteById(id).onItem().ifNotNull().transform { it }
 
-    fun getById(id: UUID): Uni<TodoCategoryDto> = r.findById(id).onItem().ifNotNull().transform(::TodoCategoryDto)
+    fun getById(id: UUID): Uni<TodoItemDto> = r.findById(id).onItem().ifNotNull().transform(::TodoItemDto)
 
-    fun update(id: UUID, dto: TodoCategoryDto) = r.update(id, TodoCategory(dto)).onItem().ifNotNull().transform(::TodoCategoryDto)
+    fun update(id: UUID, dto: TodoItemDto) = r.update(id, TodoItem(dto)).onItem().ifNotNull().transform(::TodoItemDto)
 }
