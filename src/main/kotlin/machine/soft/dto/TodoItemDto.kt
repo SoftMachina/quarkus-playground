@@ -7,7 +7,7 @@ data class TodoItemDto(var name: String = "", var description: String? = "", var
     constructor(entity: TodoItem) : this(
         name = entity.name,
         description = entity.description,
-        categoryId = entity.category?.id,
+        categoryId = entity.category.id,
     ) {
         id = entity.id
     }
