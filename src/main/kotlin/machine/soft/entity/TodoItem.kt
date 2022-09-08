@@ -9,11 +9,12 @@ class TodoItem(
     var name: String = "",
     var description: String? = "",
     @ManyToOne(optional = false)
-    var category: TodoCategory
+    var category: TodoCategory,
+    var isDone: Boolean = false
 ) : BaseEntity() {
 
 
-    constructor(dto: TodoItemDto, category: TodoCategory) : this(name = dto.name, description = dto.description, category = category)
+    constructor(dto: TodoItemDto, category: TodoCategory) : this(name = dto.name, description = dto.description, category = category, isDone = false)
 
     fun update(entity: TodoItem): TodoItem {
         this.name = entity.name

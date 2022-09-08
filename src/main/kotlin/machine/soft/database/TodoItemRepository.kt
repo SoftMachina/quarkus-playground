@@ -22,4 +22,8 @@ class TodoItemRepository @Inject constructor(val repoTC: TodoCategoryRepository)
         it.apply { update(entity) }.persist()
     }
 
+    @ReactiveTransactional
+    fun switchState(id: UUID): Uni<TodoItem> = findById(id).onItem().ifNotNull().transformToUni { it ->
+        it.apply { it.isDone = !it.isDone }.persist()
+    }
 }

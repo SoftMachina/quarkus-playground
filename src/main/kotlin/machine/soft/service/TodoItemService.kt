@@ -21,4 +21,6 @@ class TodoItemService(val r: TodoItemRepository, val repoTC: TodoCategoryReposit
     fun update(id: UUID, dto: TodoItemDto) = repoTC.findById(dto.categoryId).onItem().ifNotNull().transformToUni { it ->
         r.update(id, TodoItem(dto, it)).onItem().ifNotNull().transform(::TodoItemDto)
     }
+
+    fun switchState(id: UUID) = r.switchState(id).onItem().ifNotNull().transform(::TodoItemDto)
 }
